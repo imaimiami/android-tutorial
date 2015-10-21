@@ -21,18 +21,36 @@ public class ImageAdapter extends ArrayAdapter<Image> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view = layoutInflater.inflate(R.layout.listitem_image, parent, false);
-        TextView titleText = (TextView)view.findViewById(R.id.title_text);
-        TextView descriptionText = (TextView)view.findViewById(R.id.description_text);
-        ImageView imageView = (ImageView)view.findViewById(R.id.thumbnail_image);
-
+        View view;
+        ViewHolder viewHolder;
+        if (convertView == null) {
+            view = layoutInflater.inflate(R.layout.listitem_image, parent, false);
+            viewHolder = new ViewHolder(view);
+            view.setTag(viewHolder);
+        } else {
+            view = convertView;
+            viewHolder = (ViewHolder) view.getTag();
+        }
         Image image = getItem(position);
-
-        titleText.setText(image.getTitle());
-        descriptionText.setText(image.getUrl());
-        imageView.setImageResource(R.drawable.tvos_comment);
-
+        viewHolder.titleText.setText(image.getTitle());
+        viewHolder.descriptionText.setText(image.getUrl());
+        viewHolder.thumbnailImage.setImageResource(R.drawable.tvos_comment);
         return view;
+    }
+
+    private static class ViewHolder {
+
+        private ImageView thumbnailImage;
+
+        private TextView titleText;
+
+        private TextView descriptionText;
+
+        public ViewHolder(View rootView) {
+            this.thumbnailImage = (ImageView) rootView.findViewById(R.id.thumbnail_image);
+            this.titleText = (TextView) rootView.findViewById(R.id.title_text);
+            this.descriptionText = (TextView) rootView.findViewById(R.id.description_text);
+        }
     }
 
 }
