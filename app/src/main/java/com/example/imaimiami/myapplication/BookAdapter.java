@@ -1,22 +1,26 @@
 package com.example.imaimiami.myapplication;
 
-import android.widget.ArrayAdapter;
+import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.LayoutInflater;
-import android.content.Context;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.example.imaimiami.myapplication.model.Image;
-import android.widget.ImageView;
 
-public class ImageAdapter extends ArrayAdapter<Image> {
+import com.squareup.picasso.Picasso;
+
+import com.example.imaimiami.myapplication.model.Book;
+
+public class BookAdapter extends ArrayAdapter<Book> {
 
     private LayoutInflater layoutInflater;
+    Context context;
 
-    public ImageAdapter(Context context) {
+    public BookAdapter(Context context) {
         super(context, 0);
         this.layoutInflater = LayoutInflater.from(context);
+        this.context = context;
     }
 
     @Override
@@ -31,10 +35,11 @@ public class ImageAdapter extends ArrayAdapter<Image> {
             view = convertView;
             viewHolder = (ViewHolder) view.getTag();
         }
-        Image image = getItem(position);
-        viewHolder.titleText.setText(image.getTitle());
-        viewHolder.descriptionText.setText(image.getUrl());
-        viewHolder.thumbnailImage.setImageResource(R.drawable.tvos_comment);
+        Book book = getItem(position);
+        viewHolder.titleText.setText(book.getTitle());
+//        viewHolder.descriptionText.setText(book.getUrl());
+//        viewHolder.thumbnailImage.setImage(book.getImageUrl());
+        Picasso.with(this.context).load(book.getImageUrl()).into(viewHolder.thumbnailImage);
         return view;
     }
 
@@ -49,7 +54,7 @@ public class ImageAdapter extends ArrayAdapter<Image> {
         public ViewHolder(View rootView) {
             this.thumbnailImage = (ImageView) rootView.findViewById(R.id.thumbnail_image);
             this.titleText = (TextView) rootView.findViewById(R.id.title_text);
-            this.descriptionText = (TextView) rootView.findViewById(R.id.description_text);
+//            this.descriptionText = (TextView) rootView.findViewById(R.id.description_text);
         }
     }
 

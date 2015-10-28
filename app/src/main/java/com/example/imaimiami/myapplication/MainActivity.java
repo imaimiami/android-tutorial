@@ -19,9 +19,12 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
+import com.etsy.android.grid.StaggeredGridView;
+
 public class MainActivity extends ActionBarActivity {
 
-    private ListView listView;
+    private StaggeredGridView gridView;
+//    private ListView listView;
 
     private BookAdapter adapter;
 
@@ -29,7 +32,8 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        listView = (ListView) findViewById(R.id.image_list);
+//        listView = (ListView) findViewById(R.id.grid_view);
+        gridView = (StaggeredGridView) findViewById(R.id.grid_view);
         adapter = new BookAdapter(this);
 
 //        adapter.add(new Image(0, "title0", "http://www.xyz..."));
@@ -50,9 +54,9 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
-        listView.setAdapter(adapter);
+        gridView.setAdapter(adapter);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Book book = adapter.getItem(position);
