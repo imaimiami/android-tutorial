@@ -36,23 +36,26 @@ public class BookAdapter extends ArrayAdapter<Book> {
             viewHolder = (ViewHolder) view.getTag();
         }
         Book book = getItem(position);
-        viewHolder.titleText.setText(book.getTitle());
+        viewHolder.titleText.setText(book.getFirstComment());
 //        viewHolder.descriptionText.setText(book.getUrl());
 //        viewHolder.thumbnailImage.setImage(book.getImageUrl());
         Picasso.with(this.context).load(book.getImageUrl()).into(viewHolder.thumbnailImage);
+//        Picasso.with(this.context).load(book.getFirstCommentAvatar()).into(viewHolder.iconImage);
         return view;
     }
 
     private static class ViewHolder {
 
         private ImageView thumbnailImage;
+        private ImageView iconImage;
 
         private TextView titleText;
 
-        private TextView descriptionText;
+//        private TextView descriptionText;
 
         public ViewHolder(View rootView) {
             this.thumbnailImage = (ImageView) rootView.findViewById(R.id.thumbnail_image);
+//            this.iconImage = (ImageView) rootView.findViewById(R.id.icon_image);
             this.titleText = (TextView) rootView.findViewById(R.id.title_text);
 //            this.descriptionText = (TextView) rootView.findViewById(R.id.description_text);
         }

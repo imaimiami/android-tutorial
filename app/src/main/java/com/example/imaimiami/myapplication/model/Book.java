@@ -9,21 +9,16 @@ public class Book {
 
     private String title;
 
-    private String url;
-
-    private Date createdAt;
-
-    private List<Comment> comments;
+    private List<Post> posts;
 
     private Image image;
 
     public Book() {
     }
 
-    public Book(int id, String title, String url) {
+    public Book(int id, String title) {
         this.id = id;
         this.title = title;
-        this.url = url;
     }
 
     public int getId() {
@@ -34,19 +29,19 @@ public class Book {
         return title;
     }
 
-    public String getUrl() {
-        return url;
-    }
-
     public String getImageUrl() {
         return image.getUrl();
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
+    public List<Post> getPosts() {
+        return posts;
     }
 
-    public List<Comment> getComments() {
-        return comments;
+    public String getFirstComment() {
+        return this.posts.get(0).getBody();
+    }
+
+    public String getFirstCommentAvatar() {
+        return this.posts.get(0).getUserIconUrl();
     }
 }
