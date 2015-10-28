@@ -2,6 +2,9 @@ package com.example.imaimiami.myapplication.api;
 
 import com.example.imaimiami.myapplication.model.Image;
 import com.example.imaimiami.myapplication.model.Images;
+import com.example.imaimiami.myapplication.model.Books;
+
+import java.util.List;
 
 import retrofit.Callback;
 import retrofit.ResponseCallback;
@@ -14,7 +17,7 @@ import retrofit.http.Path;
 public interface ApiService {
 
     @GET("/api/v1/feeds/featured.json")
-    void fetchImages(Callback<Images> callback);
+    void fetchBooks(Callback<Books> callback);
 
     @GET("/images/{id}.json")
     void fetchImage(@Path("id") int imageId, Callback<Image> callback);

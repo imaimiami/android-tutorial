@@ -13,6 +13,7 @@ import com.google.gson.JsonParseException;
 import retrofit.RestAdapter;
 import retrofit.converter.GsonConverter;
 
+import com.example.imaimiami.myapplication.model.Images;
 import com.example.imaimiami.myapplication.model.Image;
 
 public class ServiceProvider {
@@ -40,18 +41,18 @@ public class ServiceProvider {
     }
 }
 
-class MyDeserializer implements JsonDeserializer<Image>
-{
-    @Override
-    public Image deserialize(JsonElement je, Type type, JsonDeserializationContext jdc)
-            throws JsonParseException
-    {
-        // Get the "content" element from the parsed JSON
-        JsonElement content = je.getAsJsonObject().get("books");
-
-        // Deserialize it. You use a new instance of Gson to avoid infinite recursion
-        // to this deserializer
-        return new Gson().fromJson(content, Image.class);
-
-    }
-}
+//class MyDeserializer implements JsonDeserializer<Image>
+//{
+//    @Override
+//    public Image deserialize(JsonElement je, Type type, JsonDeserializationContext jdc)
+//            throws JsonParseException
+//    {
+//        // Get the "content" element from the parsed JSON
+//        JsonElement content = je.getAsJsonObject().get("books");
+//
+//        // Deserialize it. You use a new instance of Gson to avoid infinite recursion
+//        // to this deserializer
+//        return new Gson().fromJson(content, Image.class);
+//
+//    }
+//}
